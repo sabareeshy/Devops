@@ -1,5 +1,5 @@
 ---
-apiVersion: networking.k8s.io
+apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: apptodb
@@ -17,7 +17,7 @@ spec:
           protocol: TCP
 
 ---
-apiVersion: networking.k8s.io
+apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: webtoapp
