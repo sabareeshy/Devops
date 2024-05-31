@@ -1,0 +1,14 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: np-blockall
+spec:
+  podSelector:
+    matchLabels:
+      tier: web
+  policyTypes:
+    - Ingress
+    - Egress
+
+    # This will block all incoming and outgoing traffic for pod whose label matches with tier=web
