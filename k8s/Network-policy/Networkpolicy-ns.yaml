@@ -19,5 +19,8 @@ spec:
       ports:
         - port: 80
           protocol: TCP
+
+
+# This Network policy is combination of namespace and pod selector, traffic will be allowed to pods either matching expressions from namespace or pod selector
       
       
