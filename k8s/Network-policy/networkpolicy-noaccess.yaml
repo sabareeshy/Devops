@@ -11,4 +11,4 @@ spec:
     - Ingress
     - Egress
 
-    # This will block all incoming and outgoing traffic for pod whose label matches with tier=web
+    # This will block all incoming and outgoing traffic to the  pod whose label matches with tier=web. Denies all traffic to a pod
