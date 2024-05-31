@@ -23,3 +23,31 @@ One of the difficulties associated with Network Policies is the lack of clear vi
 
 Finally, you should ensure that Network Policies are only part of your Kubernetes isolation strategy. They need to be supported by other protections too, such as correct container security contexts and appropriate RBAC rules that block unauthorized user access to your Pods.
 
+
+Securing Control Plane Components:
+
+Now let’s talk about securing etcd, where all your cluster configuration and desired state persist. If attackers get access to the etcd datastore, they can control your cluster and run containers with elevated privileges on any cluster node. You can secure it by using Public Key Infrastructure, which uses a combination of keys and certificates. In addition, this ensures that data in transit is secure using TLS and access is restricted using credentials.
+
+The Kubernetes API server is another essential component that allows external clients to communicate, know, and update the state of your cluster. Therefore, it is vital to make sure it’s secure from external attacks.
+
+The API server typically listens on secure TLS ports such as 443, 8843, and so on. You can get details about the API server endpoint using the kubectl cluster-info command. If you try to access the API server endpoint, you will most probably get the following response, which means that it is inaccessible from the internet. It also means that you are not authorized to access the API server endpoint.
+
+Copy
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {
+
+  },
+  "status": "Failure",
+  "message": "forbidden: User \"system:anonymous\" cannot get path \"/\"",
+  "reason": "Forbidden",
+  "details": {
+
+  },
+  "code": 403
+}
+Similar to etcd, the Kubernetes API server can also be secured using the PKI and TLS.
+
+#
+
