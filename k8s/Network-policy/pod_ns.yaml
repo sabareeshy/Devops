@@ -17,6 +17,26 @@ spec:
       ports:
         - containerPort: 80
           protocol: TCP
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stg
+  namespace: production
+  labels:
+    env: prod
+spec:
+  containers:
+    - name: stg
+      image: nginx
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "100m"
+      ports:
+        - containerPort: 80
+          protocol: TCP
 ---
 apiVersion: v1
 kind: Pod
