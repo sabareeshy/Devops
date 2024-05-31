@@ -5,7 +5,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      env: production
+      env: prod
   ingress:
     - from:
       namespaceSelector:
