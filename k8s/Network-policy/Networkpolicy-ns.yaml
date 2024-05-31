@@ -1,16 +1,19 @@
 ---
 apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
+kind: networkPolicy
 metadata:
-  name: Networkpolicy-ns
+  name: networkpolicy-ns
 spec:
   podSelector:
     matchLabels:
       env: prod
   ingress:
     - from:
-      namespaceSelector:
-        matchLabels:
-          env: production
+        - namespaceSelector:
+            matchLabels:
+              env: production
+      ports:
+        - port: 80
+          protocol: TCP
       
       
