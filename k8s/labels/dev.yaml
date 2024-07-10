@@ -6,10 +6,10 @@ metadata:
   labels:
     env: dev
     tier: backend
-  spec:
-    containers:
-      - name: nginx
-        image: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx
 
 ---
 apiVersion: v1
@@ -19,8 +19,8 @@ metadata:
   labels:
     env: dev
     tier: frontend
-  spec:
-    containers:
-      - name: httpd
-        image: httpd
+spec:
+  containers:
+    - name: httpd
+      image: httpd
 
