@@ -12,8 +12,8 @@ spec:
   template:
     metadata:
       name: sample-pod
-    labels:
-      tier: frontend
+      labels:
+        tier: frontend
     spec:
       containers:
         - name: nginx
