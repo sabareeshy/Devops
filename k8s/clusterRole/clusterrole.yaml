@@ -1,0 +1,19 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: avengers
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+      - services
+    verbs: ["*"]
+  - apiGroups:
+      - "apps"
+    resources:
+      - deployments
+      - daemonsets
+      - statefulsets
+    verbs: ["*"]
