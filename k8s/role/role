@@ -5,9 +5,14 @@ metadata:
   name: justiceleaque
   namespace: qa
 rules:
-  - apiGroups: ""
-    resources: ["pods, services"]
+  - apiGroups: 
+      - ""
+    resources:
+      - pods
+      - services
     verbs: ["*"]
-  - apiGroups: "apps"
-    resources: ["deployments"]
+  - apiGroups: 
+      - apps
+    resources: 
+      - deployments
     verbs: ["*"]
