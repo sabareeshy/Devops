@@ -6,7 +6,7 @@ metadata:
 spec:
   replicas: 3
   selector: 
-    matchlabels:
+    matchLabels:
       app: nginx
   template:
     metadata:
@@ -14,7 +14,7 @@ spec:
         app: nginx
     spec:
       containers:
-        - name: nginx-pod
+        - name: nginx
            image: nginx:1.14.2
            ports:
              - containerPort: 80  
