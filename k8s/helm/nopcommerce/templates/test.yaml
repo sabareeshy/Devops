@@ -1,6 +1,15 @@
-Release: {{ .Release.Name }}
-version: {{ .Release.Namespace }}
-service: {{ .Release.Service }}
-chart: {{ .Chart.Name }}
-count:
-   replicacount: {{ .Values.replicaCount }}
+---
+apiVersion: V1
+kind: Pod
+metadata:
+  name: mypod
+  {{- if  .Values.labels }}
+  labels: {{ toYaml .Values.labels | nindent 4 }}
+  {{- end }}
+spec:
+  containers:
+    - name: test
+      image: nginx
+      {{- if .Values.resources }}
+      resources: {{ toYaml .Values.resources | nindent 8 }}
+      {{- end }}
