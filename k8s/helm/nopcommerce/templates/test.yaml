@@ -1,1 +1,6 @@
 Release: {{ .Release.Name }}
+version: {{ .Release.Namespace }}
+service: {{ .Release.Service }}
+chart: {{ .Chart.Name }}
+count:
+   replicacount: {{ .Values.replicaCount }}
