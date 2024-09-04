@@ -73,14 +73,19 @@ resources:
     cpu: 1000m
     memory: 1024Mi
 
-livenessProbe:
-  httpGet:
-    path: /
-    port: http
+# livenessProbe:
+#   httpGet:
+#     path: /
+#     port: http
 readinessProbe:
   httpGet:
     path: /
     port: http
+livenessprobe:
+  enabled: true
+  type: http
+  path: /orders
+  port: 80
 
 autoscaling:
   enabled: false
