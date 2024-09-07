@@ -40,10 +40,24 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
-  targetPort: 80
-  protocol: TCP
+  name: myapp
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+    - name: https
+      port: 443
+      targetPort: 8443
+selector:
+  app: myapp
+  version: v1.0
+  env: prod
+  
+labels:
+  app: myservice
+  version: v1.0
+  env: prod
 
 ingress:
   enabled: false
