@@ -109,13 +109,17 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
+volumes:
+  - name: varlog
+    type: hostPath
+    path: /var/log
+  - name: varlog2
+    type: hostPath
+    path: /var/log2
+  - name: dbvol
+    path: /var/lib/mysql
+    type: emptyDir
 
-# Additional volumeMounts on the output Deployment definition.
 volumeMounts: []
 # - name: foo
 #   mountPath: "/etc/foo"
@@ -123,7 +127,13 @@ volumeMounts: []
 
 nodeSelector: {}
 
-tolerations: []
+tolerations:
+  - key: node-role.kubernetes.io/control-plane
+    operator: Exists
+    effect: NoSchedule
+  - key: node-role.kubernetes.io/master
+    operator: Exists
+    effect: NoSchedule
 
 affinity: {}
 labels:

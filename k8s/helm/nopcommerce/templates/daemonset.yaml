@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd-elasticsearch
+  namespace: {{ .Values.namespace }}
+  labels: {{toYaml .Values.labels | nindent 4 }}
+spec:
+  selector: {{toYaml .Values.selector |nindent 4 }}
+  template:
+    metadata: {{toYaml .Values.template.metadata  | nindent 6}}
+    spec:
+      tolerations:
+      {{- range .Values.tolerations }}
+      - key: {{ .key }}
+        operator: {{ .operator }}
+        effect: {{ .effect }}
+      {{- end }}
+      containers:
+       {{- toYaml .Values.containers | nindent 8 }}
+        resources:
+        {{- toYaml .Values.resources | nindent 10 }}
+        volumeMounts:
+        {{- range .Values.volumes }}
+         - name: {{ .name }}
+           mountpath: {{ .path }}
+        {{- end }}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      {{- range .Values.volumes }}
+       - name: {{.name}}
+         {{ .type}}:
+           path: {{.path}}
+      {{- end }}
